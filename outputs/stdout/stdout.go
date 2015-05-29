@@ -41,6 +41,6 @@ func (out *StdOutput) PublishEvent(ts time.Time, event common.MapStr) error {
 
 func (out *StdOutput) Print(event common.MapStr) {
   for key, value := range event {
-    logp.Debug("kv: %s %s\n", key, value)
+    logp.Info("kv: %s %s\n", key, value)
   }
 }
