@@ -2,7 +2,7 @@ package elasticsearch
 
 import (
 	"fmt"
-	"github.com/elastic/libbeat/logp"
+  "github.com/johann8384/libbeat/logp"
 	"github.com/stretchr/testify/assert"
 	"os"
 	"testing"

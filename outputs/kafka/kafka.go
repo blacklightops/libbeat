@@ -5,12 +5,10 @@ import (
   "errors"
   "strings"
   "time"
-//	"log"
-//	"os"
 
-  "github.com/elastic/libbeat/common"
-  "github.com/elastic/libbeat/logp"
-  "github.com/elastic/libbeat/outputs"
+  "github.com/johann8384/libbeat/common"
+  "github.com/johann8384/libbeat/logp"
+  "github.com/johann8384/libbeat/outputs"
 
   "github.com/Shopify/sarama"
 )

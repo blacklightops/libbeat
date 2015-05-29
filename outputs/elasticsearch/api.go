@@ -9,7 +9,11 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/elastic/libbeat/logp"
+  "github.com/johann8384/libbeat/logp"
+)
+
+const (
+  DefaultElasticsearchUrl = "http://localhost:9200"
 )
 
 type Elasticsearch struct {
