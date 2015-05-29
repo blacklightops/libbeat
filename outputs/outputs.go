@@ -56,6 +56,7 @@ const (
 	ElasticsearchOutput
 	FileOutput
   KafkaOutput
+  StdOutput
 )
 
 // Output names
@@ -65,6 +66,7 @@ var OutputNames = []string{
 	"elasticsearch",
 	"file",
   "kafka",
+  "stdout",
 }
 
 func (o OutputPlugin) String() string {
