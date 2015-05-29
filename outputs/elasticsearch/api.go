@@ -9,7 +9,7 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/elastic/libbeat/logp"
+  "github.com/johann8384/libbeat/logp"
 )
 
 type Elasticsearch struct {

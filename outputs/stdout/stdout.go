@@ -3,9 +3,9 @@ package stdout
 import (
   "time"
 
-  "github.com/elastic/libbeat/common"
-  "github.com/elastic/libbeat/logp"
-  "github.com/elastic/libbeat/outputs"
+  "github.com/johann8384/libbeat/common"
+  "github.com/johann8384/libbeat/logp"
+  "github.com/johann8384/libbeat/outputs"
 )
 
 type StdOutput struct {
