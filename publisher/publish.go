@@ -14,6 +14,7 @@ import (
   "github.com/johann8384/libbeat/outputs/fileout"
   "github.com/johann8384/libbeat/outputs/redis"
   "github.com/johann8384/libbeat/outputs/kafka"
+  "github.com/johann8384/libbeat/outputs/stdout"
 	"github.com/nranchev/go-libGeoIP"
 )
 
@@ -52,6 +53,7 @@ var EnabledOutputPlugins map[outputs.OutputPlugin]outputs.OutputInterface = map[
 	outputs.ElasticsearchOutput: new(elasticsearch.ElasticsearchOutput),
 	outputs.FileOutput:          new(fileout.FileOutput),
   outputs.KafkaOutput:         new(kafka.KafkaOutput),
+  outputs.StdOutput:           new(stdout.StdOutput),
 }
 
 func PrintPublishEvent(event common.MapStr) {
