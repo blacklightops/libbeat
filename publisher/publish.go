@@ -14,6 +14,7 @@ import (
 	"github.com/elastic/libbeat/outputs/elasticsearch"
 	"github.com/elastic/libbeat/outputs/fileout"
 	"github.com/elastic/libbeat/outputs/redis"
+  "github.com/elastic/libbeat/outputs/kafka"
 	"github.com/nranchev/go-libGeoIP"
 )
 
@@ -54,6 +55,7 @@ var EnabledOutputPlugins map[outputs.OutputPlugin]outputs.OutputInterface = map[
 	outputs.RedisOutput:         new(redis.RedisOutput),
 	outputs.ElasticsearchOutput: new(elasticsearch.ElasticsearchOutput),
 	outputs.FileOutput:          new(fileout.FileOutput),
+  outputs.KafkaOutput:         new(kafka.KafkaOutput),
 }
 
 func CmdLineFlags(flags *flag.FlagSet) {
