@@ -34,6 +34,7 @@ const (
 var FilterPluginNames = []string{
 	"nop",
 	"sample",
+  "opentsdb",
 }
 
 func (filter Filter) String() string {
