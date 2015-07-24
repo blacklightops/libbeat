@@ -2,7 +2,6 @@ package filters
 
 import (
 	"fmt"
-
   "github.com/johann8384/libbeat/common"
 )
 
@@ -27,14 +26,16 @@ type FilterPlugin interface {
 type Filter int
 
 const (
-	NopFilter Filter = iota
-	SampleFilter
+  NopFilter Filter = iota
+
+ OpenTSDBFilter Filter = iota
+  SampleFilter
 )
 
 var FilterPluginNames = []string{
-	"nop",
-	"sample",
+  "nop",
   "opentsdb",
+  "sample",
 }
 
 func (filter Filter) String() string {

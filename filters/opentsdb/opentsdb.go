@@ -2,9 +2,10 @@ package opentsdb
 
 import (
   "regexp"
+  "errors"
   "strings"
   "github.com/johann8384/libbeat/common"
-  "filters"
+  "github.com/johann8384/libbeat/filters"
 )
 
 type TSDBMetricExp struct {
@@ -13,12 +14,12 @@ type TSDBMetricExp struct {
 
 var metricExp = TSDBMetricExp{regexp.MustCompile(`^put (?P<metric_name>[\w.]+)[\s]+(?P<metric_timestamp>[0-9]+)[\s]+(?P<metric_value>[0-9.]+)[\s]+(?P<metric_tags>.*$)`)}
 
-func (r *TSDBMetricExp) FindStringSubmatchMap(s string) map[string]string {
+func (r *TSDBMetricExp) FindStringSubmatchMap(s string) (map[string]string, error) {
   captures := make(map[string]string)
 
   match := r.FindStringSubmatch(s)
   if match == nil {
-    return captures
+    return captures, errors.New("Line did not match regex")
   }
 
   for i, name := range r.SubexpNames() {
@@ -28,7 +29,7 @@ func (r *TSDBMetricExp) FindStringSubmatchMap(s string) map[string]string {
     captures[name] = match[i]
 
   }
-  return captures
+  return captures, nil
 }
 
 type OpenTSDB struct {
@@ -42,7 +43,13 @@ func (opentsdb *OpenTSDB) New(name string, config map[string]interface{}) (filte
 //TODO: Check for Errors Here
 func (opentsdb *OpenTSDB) Filter(event common.MapStr) (common.MapStr, error) {
   text := event["message"]
-  metric_data := metricExp.FindStringSubmatchMap(text.(string))
+  text_string := text.(*string)
+
+  metric_data, err := metricExp.FindStringSubmatchMap(*text_string)
+  if (err != nil) {
+    return event, nil
+  }
+
   parsed_tags := strings.Fields(metric_data["metric_tags"])
   tags := make(map[string]string)
 
@@ -56,7 +63,7 @@ func (opentsdb *OpenTSDB) Filter(event common.MapStr) (common.MapStr, error) {
   event["metric_timestamp"] = metric_data["metric_timestamp"]
   event["metric_tags"]      = metric_data["metric_tags"]
   event["metric_tags_map"]  = tags
-
+  
   return event, nil
 }
 

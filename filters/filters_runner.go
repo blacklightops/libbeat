@@ -3,8 +3,8 @@ package filters
 import (
 	"fmt"
 
-	"github.com/elastic/libbeat/common"
-	"github.com/elastic/libbeat/logp"
+	"github.com/johann8384/libbeat/common"
+	"github.com/johann8384/libbeat/logp"
 )
 
 // Executes the filters

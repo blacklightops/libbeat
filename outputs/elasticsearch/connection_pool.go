@@ -5,7 +5,7 @@ import (
 	"math/rand"
 	"time"
 
-	"github.com/elastic/libbeat/logp"
+	"github.com/johann8384/libbeat/logp"
 )
 
 type Connection struct {

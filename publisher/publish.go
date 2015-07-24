@@ -299,7 +299,7 @@ func (publisher *PublisherType) Init(outputs map[string]outputs.MothershipConfig
 		go publisher.UpdateTopologyPeriodically()
 	}
 
-	publisher.Queue = make(chan common.MapStr, 1000)
+  publisher.Queue = make(chan common.MapStr, 10000)
 	go publisher.publishFromQueue()
 
 	return nil
