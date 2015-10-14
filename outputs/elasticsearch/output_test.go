@@ -7,9 +7,9 @@ import (
 	"testing"
 	"time"
 
-  "github.com/johann8384/libbeat/common"
-  "github.com/johann8384/libbeat/logp"
-  "github.com/johann8384/libbeat/outputs"
+	"github.com/johann8384/libbeat/common"
+	"github.com/johann8384/libbeat/logp"
+	"github.com/johann8384/libbeat/outputs"
 )
 
 const elasticsearchAddr = "localhost"

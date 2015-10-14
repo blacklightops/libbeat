@@ -3,8 +3,8 @@
 package nop
 
 import (
-  "github.com/johann8384/libbeat/common"
-  "github.com/johann8384/libbeat/filters"
+	"github.com/johann8384/libbeat/common"
+	"github.com/johann8384/libbeat/filters"
 )
 
 type Nop struct {

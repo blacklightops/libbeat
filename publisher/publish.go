@@ -8,14 +8,14 @@ import (
 	"os"
 	"time"
 
-  "github.com/johann8384/libbeat/common"
-  "github.com/johann8384/libbeat/logp"
-  "github.com/johann8384/libbeat/outputs"
-  "github.com/johann8384/libbeat/outputs/elasticsearch"
-  "github.com/johann8384/libbeat/outputs/fileout"
-  "github.com/johann8384/libbeat/outputs/redis"
-  "github.com/johann8384/libbeat/outputs/kafka"
-  "github.com/johann8384/libbeat/outputs/stdout"
+	"github.com/johann8384/libbeat/common"
+	"github.com/johann8384/libbeat/logp"
+	"github.com/johann8384/libbeat/outputs"
+	"github.com/johann8384/libbeat/outputs/elasticsearch"
+	"github.com/johann8384/libbeat/outputs/fileout"
+	"github.com/johann8384/libbeat/outputs/kafka"
+	"github.com/johann8384/libbeat/outputs/redis"
+	"github.com/johann8384/libbeat/outputs/stdout"
 	"github.com/nranchev/go-libGeoIP"
 )
 
@@ -56,8 +56,8 @@ var EnabledOutputPlugins map[outputs.OutputPlugin]outputs.OutputInterface = map[
 	outputs.RedisOutput:         new(redis.RedisOutput),
 	outputs.ElasticsearchOutput: new(elasticsearch.ElasticsearchOutput),
 	outputs.FileOutput:          new(fileout.FileOutput),
-  outputs.KafkaOutput:         new(kafka.KafkaOutput),
-  outputs.StdOutput:           new(stdout.StdOutput),
+	outputs.KafkaOutput:         new(kafka.KafkaOutput),
+	outputs.StdOutput:           new(stdout.StdOutput),
 }
 
 func CmdLineFlags(flags *flag.FlagSet) {
@@ -193,7 +193,7 @@ func (publisher *PublisherType) publishEvent(event common.MapStr) error {
 }
 
 func (publisher *PublisherType) UpdateTopologyPeriodically() {
-	for _ = range publisher.RefreshTopologyTimer {
+	for range publisher.RefreshTopologyTimer {
 		publisher.PublishTopology()
 	}
 }
@@ -299,7 +299,7 @@ func (publisher *PublisherType) Init(outputs map[string]outputs.MothershipConfig
 		go publisher.UpdateTopologyPeriodically()
 	}
 
-  publisher.Queue = make(chan common.MapStr, 10000)
+	publisher.Queue = make(chan common.MapStr, 10000)
 	go publisher.publishFromQueue()
 
 	return nil

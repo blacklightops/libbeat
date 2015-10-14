@@ -21,14 +21,14 @@ func TestOneHostSuccessResp_Bulk(t *testing.T) {
 	expected_resp, _ := json.Marshal(QueryResult{Ok: true, Index: index, Type: "type1", Id: "1", Version: 1, Created: true})
 
 	ops := []map[string]interface{}{
-		map[string]interface{}{
+		{
 			"index": map[string]interface{}{
 				"_index": index,
 				"_type":  "type1",
 				"_id":    "1",
 			},
 		},
-		map[string]interface{}{
+		{
 			"field1": "value1",
 		},
 	}
@@ -63,14 +63,14 @@ func TestOneHost500Resp_Bulk(t *testing.T) {
 	index := fmt.Sprintf("packetbeat-unittest-%d", os.Getpid())
 
 	ops := []map[string]interface{}{
-		map[string]interface{}{
+		{
 			"index": map[string]interface{}{
 				"_index": index,
 				"_type":  "type1",
 				"_id":    "1",
 			},
 		},
-		map[string]interface{}{
+		{
 			"field1": "value1",
 		},
 	}
@@ -106,14 +106,14 @@ func TestOneHost503Resp_Bulk(t *testing.T) {
 	index := fmt.Sprintf("packetbeat-unittest-%d", os.Getpid())
 
 	ops := []map[string]interface{}{
-		map[string]interface{}{
+		{
 			"index": map[string]interface{}{
 				"_index": index,
 				"_type":  "type1",
 				"_id":    "1",
 			},
 		},
-		map[string]interface{}{
+		{
 			"field1": "value1",
 		},
 	}
@@ -151,14 +151,14 @@ func TestMultipleHost_Bulk(t *testing.T) {
 	expected_resp, _ := json.Marshal(QueryResult{Ok: true, Index: index, Type: "type1", Id: "1", Version: 1, Created: true})
 
 	ops := []map[string]interface{}{
-		map[string]interface{}{
+		{
 			"index": map[string]interface{}{
 				"_index": index,
 				"_type":  "type1",
 				"_id":    "1",
 			},
 		},
-		map[string]interface{}{
+		{
 			"field1": "value1",
 		},
 	}

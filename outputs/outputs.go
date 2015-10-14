@@ -3,7 +3,7 @@ package outputs
 import (
 	"time"
 
-  "github.com/johann8384/libbeat/common"
+	"github.com/johann8384/libbeat/common"
 )
 
 type MothershipConfig struct {
@@ -19,7 +19,7 @@ type MothershipConfig struct {
 	Path               string
 	Db                 int
 	Db_topology        int
-  Topic              string
+	Topic              string
 	Timeout            int
 	Reconnect_interval int
 	Filename           string
@@ -55,8 +55,8 @@ const (
 	RedisOutput
 	ElasticsearchOutput
 	FileOutput
-  KafkaOutput
-  StdOutput
+	KafkaOutput
+	StdOutput
 )
 
 // Output names
@@ -65,8 +65,8 @@ var OutputNames = []string{
 	"redis",
 	"elasticsearch",
 	"file",
-  "kafka",
-  "stdout",
+	"kafka",
+	"stdout",
 }
 
 func (o OutputPlugin) String() string {

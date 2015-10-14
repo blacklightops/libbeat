@@ -7,8 +7,8 @@ import (
 	"path/filepath"
 	"testing"
 
+	"github.com/johann8384/libbeat/logp"
 	"github.com/stretchr/testify/assert"
-  "github.com/johann8384/libbeat/logp"
 )
 
 func Test_Rotator(t *testing.T) {
