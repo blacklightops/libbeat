@@ -8,14 +8,14 @@ import (
 	"os"
 	"time"
 
-	"github.com/johann8384/libbeat/common"
-	"github.com/johann8384/libbeat/logp"
-	"github.com/johann8384/libbeat/outputs"
-	"github.com/johann8384/libbeat/outputs/elasticsearch"
-	"github.com/johann8384/libbeat/outputs/fileout"
-	"github.com/johann8384/libbeat/outputs/kafka"
-	"github.com/johann8384/libbeat/outputs/redis"
-	"github.com/johann8384/libbeat/outputs/stdout"
+	"github.com/blacklightops/libbeat/common"
+	"github.com/blacklightops/libbeat/logp"
+	"github.com/blacklightops/libbeat/outputs"
+	"github.com/blacklightops/libbeat/outputs/elasticsearch"
+	"github.com/blacklightops/libbeat/outputs/fileout"
+	"github.com/blacklightops/libbeat/outputs/kafka"
+	"github.com/blacklightops/libbeat/outputs/redis"
+	"github.com/blacklightops/libbeat/outputs/stdout"
 	"github.com/nranchev/go-libGeoIP"
 )
 

@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/johann8384/libbeat/logp"
+	"github.com/blacklightops/libbeat/logp"
 	"github.com/stretchr/testify/assert"
 )
 

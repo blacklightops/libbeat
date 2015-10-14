@@ -4,7 +4,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/johann8384/libbeat/logp"
+	"github.com/blacklightops/libbeat/logp"
 
 	"github.com/nranchev/go-libGeoIP"
 )

@@ -2,8 +2,8 @@ package opentsdb
 
 import (
 	"errors"
-	"github.com/johann8384/libbeat/common"
-	"github.com/johann8384/libbeat/filters"
+	"github.com/blacklightops/libbeat/common"
+	"github.com/blacklightops/libbeat/filters"
 	"regexp"
 	"strings"
 )

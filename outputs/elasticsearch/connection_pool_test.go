@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/johann8384/libbeat/logp"
+	"github.com/blacklightops/libbeat/logp"
 )
 
 func TestRoundRobin(t *testing.T) {

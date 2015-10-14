@@ -9,7 +9,7 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/johann8384/libbeat/logp"
+	"github.com/blacklightops/libbeat/logp"
 )
 
 const (

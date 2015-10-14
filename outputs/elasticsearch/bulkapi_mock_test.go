@@ -8,7 +8,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/johann8384/libbeat/logp"
+	"github.com/blacklightops/libbeat/logp"
 )
 
 func TestOneHostSuccessResp_Bulk(t *testing.T) {

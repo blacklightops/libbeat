@@ -4,7 +4,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/johann8384/libbeat/logp"
+	"github.com/blacklightops/libbeat/logp"
 	"golang.org/x/sys/windows/svc"
 )
 

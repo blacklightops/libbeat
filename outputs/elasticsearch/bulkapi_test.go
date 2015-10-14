@@ -5,7 +5,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/johann8384/libbeat/logp"
+	"github.com/blacklightops/libbeat/logp"
 )
 
 func TestBulk(t *testing.T) {

@@ -2,7 +2,7 @@ package filters
 
 import (
 	"fmt"
-	"github.com/johann8384/libbeat/common"
+	"github.com/blacklightops/libbeat/common"
 )
 
 // The FilterPlugin interface needs to be implemented

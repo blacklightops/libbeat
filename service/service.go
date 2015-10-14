@@ -9,7 +9,7 @@ import (
 	"runtime/pprof"
 	"syscall"
 
-	"github.com/johann8384/libbeat/logp"
+	"github.com/blacklightops/libbeat/logp"
 )
 
 // Handles OS signals that ask the service/daemon to stop.
