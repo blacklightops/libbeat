@@ -34,8 +34,8 @@ const (
 
 var FilterPluginNames = []string{
 	"nop",
-	"opentsdb",
   "jsonexpander",
+	"opentsdb",
 	"sample",
 }
 
