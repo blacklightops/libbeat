@@ -5,6 +5,7 @@ import (
 	"github.com/blacklightops/libbeat/common"
 	"github.com/blacklightops/libbeat/filters"
   "github.com/blacklightops/libbeat/logp"
+  "time"
 )
 
 func isJSONString(s string) bool {
