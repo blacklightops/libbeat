@@ -41,6 +41,12 @@ func (jsonexpander *JSONExpander) Filter(event common.MapStr) (common.MapStr, er
   } else {
     logp.Debug("jsonexpander", "Message does not appear to be JSON data: %s", text_string)
   }
+
+  now := func() time.Time {
+    t := time.Now()
+    return t
+  }
+
   event.EnsureTimestampField(now)
   event.EnsureCountField()
 
