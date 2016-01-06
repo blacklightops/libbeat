@@ -27,7 +27,7 @@ type Filter int
 
 const (
 	NopFilter Filter = iota
-
+	JSONExpanderFilter Filter = iota
 	OpenTSDBFilter Filter = iota
 	SampleFilter
 )
@@ -35,6 +35,7 @@ const (
 var FilterPluginNames = []string{
 	"nop",
 	"opentsdb",
+  "jsonexpander",
 	"sample",
 }
 
