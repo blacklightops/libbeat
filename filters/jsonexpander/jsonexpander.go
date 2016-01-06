@@ -4,6 +4,7 @@ import (
   "encoding/json"
 	"github.com/blacklightops/libbeat/common"
 	"github.com/blacklightops/libbeat/filters"
+  "github.com/blacklightops/libbeat/logp"
 )
 
 func isJSONString(s string) bool {
@@ -33,8 +34,11 @@ func (jsonexpander *JSONExpander) Filter(event common.MapStr) (common.MapStr, er
     data := []byte(*text_string)
     err := json.Unmarshal(data, &event)
     if err != nil {
+      logp.Debug("jsonexpander", "Could not expand json data")
       return event, nil
     }
+  } else {
+    logp.Debug("jsonexpander", "Message does not appear to be JSON data: %s", text_string)
   }
 	return event, nil
 }
