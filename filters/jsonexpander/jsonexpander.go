@@ -29,17 +29,19 @@ func (jsonexpander *JSONExpander) New(name string, config map[string]interface{}
 func (jsonexpander *JSONExpander) Filter(event common.MapStr) (common.MapStr, error) {
 	text := event["message"]
 	text_string := text.(*string)
+  logp.Debug("jsonexpander", "Attempting to expand: %v", event)
 
   if isJSONString(*text_string) {
     data := []byte(*text_string)
     err := json.Unmarshal(data, &event)
     if err != nil {
-      logp.Debug("jsonexpander", "Could not expand json data")
+      logp.Err("jsonexpander", "Could not expand json data")
       return event, nil
     }
   } else {
     logp.Debug("jsonexpander", "Message does not appear to be JSON data: %s", text_string)
   }
+  logp.Debug("jsonexpander", "Final Event: %v", event)
 	return event, nil
 }
 
