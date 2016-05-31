@@ -12,7 +12,7 @@ type TSDBMetricExp struct {
 	*regexp.Regexp
 }
 
-var metricExp = TSDBMetricExp{regexp.MustCompile(`^put (?P<metric_name>[\w.]+)[\s]+(?P<metric_timestamp>[0-9]+)[\s]+(?P<metric_value>[0-9.]+)[\s]+(?P<metric_tags>.*$)`)}
+var metricExp = TSDBMetricExp{regexp.MustCompile(`^[\s]*(?:put)?[\s]*(?P<metric_name>[\S.]+)[\s]+(?P<metric_timestamp>[0-9]+)[\s]*(?P<metric_value>[0-9.]+)[\s]*(?P<metric_tags>.*$)`)}
 
 func (r *TSDBMetricExp) FindStringSubmatchMap(s string) (map[string]string, error) {
 	captures := make(map[string]string)
