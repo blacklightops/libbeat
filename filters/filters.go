@@ -29,6 +29,7 @@ const (
 	NopFilter Filter = iota
 	JSONExpanderFilter Filter = iota
 	OpenTSDBFilter Filter = iota
+	GraphiteFilter Filter = iota
 	SampleFilter
 )
 
@@ -36,6 +37,7 @@ var FilterPluginNames = []string{
 	"nop",
   "jsonexpander",
 	"opentsdb",
+	"graphite",
 	"sample",
 }
 
