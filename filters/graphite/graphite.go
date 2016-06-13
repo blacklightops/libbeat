@@ -8,13 +8,13 @@ import (
 	"strings"
 )
 
-type TSDBMetricExp struct {
+type GraphiteMetricExp struct {
 	*regexp.Regexp
 }
 
-var metricExp = TSDBMetricExp{regexp.MustCompile(`^[\s]*(?:put)?[\s]*(?P<metric_name>[\S.]+)[\s]+(?P<metric_value>[0-9.]+)[\s]*(?P<metric_timestamp>[0-9]+)[\s]*(?P<metric_tags>.*$)`)}
+var metricExp = GraphiteMetricExp{regexp.MustCompile(`^[\s]*(?:put)?[\s]*(?P<datacenter>[\w]+)-(?P<host>[\w]+)\.(?P<metric_name>[\S.]+)[\s]+(?P<metric_value>[0-9.]+)[\s]*(?P<metric_timestamp>[0-9]+)[\s]?(?P<metric_tags>.*)$`)}
 
-func (r *TSDBMetricExp) FindStringSubmatchMap(s string) (map[string]string, error) {
+func (r *GraphiteMetricExp) FindStringSubmatchMap(s string) (map[string]string, error) {
 	captures := make(map[string]string)
 
 	match := r.FindStringSubmatch(s)
