@@ -30,7 +30,7 @@ func (r *GraphiteMetricExp) FindStringSubmatchMap(s string) (map[string]string, 
       match[i] += " datacenter=" + captures["datacenter"]
       match[i] += " host=" + captures["host"]
     }
-		captures[name] = match[i]
+		captures[name] = strings..TrimSpace(match[i])
 
 	}
 	return captures, nil
