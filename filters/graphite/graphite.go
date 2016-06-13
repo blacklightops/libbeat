@@ -26,6 +26,10 @@ func (r *GraphiteMetricExp) FindStringSubmatchMap(s string) (map[string]string, 
 		if i == 0 {
 			continue
 		}
+    if name == "metric_tags" {
+      match[i] += " datacenter=" + captures["datacenter"]
+      match[i] += " host=" + captures["host"]
+    }
 		captures[name] = match[i]
 
 	}
