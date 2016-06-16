@@ -5,6 +5,7 @@ import (
 	"github.com/blacklightops/libbeat/common"
 	"github.com/blacklightops/libbeat/filters"
 	"regexp"
+	"fmt"
 	"strings"
 )
 
@@ -68,7 +69,7 @@ func (graphite *Graphite) Filter(event common.MapStr) (common.MapStr, error) {
 	event["metric_timestamp"] = metric_data["metric_timestamp"]
 	event["metric_tags"] = metric_data["metric_tags"]
 	event["metric_tags_map"] = tags
-
+	event["index"] = fmt.Sprintf("%s-%s", tags["datacenter"], tags["host"])
 	return event, nil
 }
 

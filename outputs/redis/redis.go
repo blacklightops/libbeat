@@ -304,13 +304,14 @@ func (out *RedisOutput) PublishEvent(ts time.Time, event common.MapStr) error {
 		return err
 	}
 
-	event_index := event["index"]
-	event_index_string := event_index.(*string)
+	logp.Debug("output_redis", "message is %v", json_event)
 
 	var index = out.Index
-	logp.Debug("output_redis", "message is %v", json_event)
-	if *event_index_string != "" {
-		index = *event_index_string
+	if event["index"] != nil {
+		event_index := event["index"].(string)
+		if event_index != "" {
+			index = event_index
+		}
 	}
 	logp.Debug("output_redis", "sending to index: %s", index)
 
