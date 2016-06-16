@@ -34,7 +34,7 @@ type RedisOutput struct {
 	Timeout            time.Duration
 	DataType           RedisDataType
 	FlushInterval      time.Duration
-	flush_immediatelly bool
+	flush_immediately bool
 
 	TopologyMap  map[string]string
 	sendingQueue chan RedisQueueMsg
@@ -77,7 +77,7 @@ func (out *RedisOutput) Init(config outputs.MothershipConfig, topology_expire in
 	out.FlushInterval = 1000 * time.Millisecond
 	if config.Flush_interval != nil {
 		if *config.Flush_interval < 0 {
-			out.flush_immediatelly = true
+			out.flush_immediately = true
 			logp.Warn("Flushing to REDIS on each push, performance migh be affected")
 		} else {
 			out.FlushInterval = time.Duration(*config.Flush_interval) * time.Millisecond
@@ -175,7 +175,7 @@ func (out *RedisOutput) SendMessagesGoroutine() {
 	var pending int
 	flushChannel := make(<-chan time.Time)
 
-	if !out.flush_immediatelly {
+	if !out.flush_immediately {
 		flushTicker := time.NewTicker(out.FlushInterval)
 		flushChannel = flushTicker.C
 	}
@@ -188,13 +188,13 @@ func (out *RedisOutput) SendMessagesGoroutine() {
 				logp.Debug("output_redis", "Droping pkt ...")
 				continue
 			}
-			logp.Debug("output_redis", "Send event to redis")
+			logp.Debug("output_redis", "Send event to redis: %v", queueMsg.msg)
 			command := "RPUSH"
 			if out.DataType == RedisChannelType {
 				command = "PUBLISH"
 			}
 
-			if !out.flush_immediatelly {
+			if !out.flush_immediately {
 				err = out.Conn.Send(command, queueMsg.index, queueMsg.msg)
 				pending += 1
 			} else {
@@ -304,7 +304,17 @@ func (out *RedisOutput) PublishEvent(ts time.Time, event common.MapStr) error {
 		return err
 	}
 
-	out.sendingQueue <- RedisQueueMsg{index: out.Index, msg: string(json_event)}
+	event_index := event["index"]
+	event_index_string := event_index.(*string)
+
+	var index = out.Index
+	logp.Debug("output_redis", "message is %v", json_event)
+	if *event_index_string != "" {
+		index = *event_index_string
+	}
+	logp.Debug("output_redis", "sending to index: %s", index)
+
+	out.sendingQueue <- RedisQueueMsg{index: index, msg: string(json_event)}
 
 	logp.Debug("output_redis", "Publish event")
 	return nil
