@@ -205,6 +205,19 @@ func (out *RedisOutput) SendMessagesGoroutine() {
 				out.connected = false
 				go out.Reconnect()
 			}
+			if out.DataType != RedisChannelType {
+  			if !out.flush_immediately {
+	  			err = out.Conn.Send("LTRIM", queueMsg.index, "0 10000")
+		  		pending += 1
+			  } else {
+				  _, err = out.Conn.Do("LTRIM", queueMsg.index, "0 10000")
+			  }
+			  if err != nil {
+				  logp.Err("Fail to publish event to REDIS: %s", err)
+				  out.connected = false
+				  go out.Reconnect()
+			  }
+      }
 		case _ = <-flushChannel:
 			if pending > 0 {
 				out.Conn.Flush()
