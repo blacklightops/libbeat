@@ -13,7 +13,7 @@ type GraphiteMetricExp struct {
 	*regexp.Regexp
 }
 
-var metricExp = GraphiteMetricExp{regexp.MustCompile(`^[\s]*(?:put)?[\s]*(?P<datacenter>[\w]+)-(?P<host>[\w]+)\.(?P<metric_name>[\S.]+)[\s]+(?P<metric_value>[0-9.]+)[\s]*(?P<metric_timestamp>[0-9]+)[\s]?(?P<metric_tags>.*)$`)}
+var metricExp = GraphiteMetricExp{regexp.MustCompile(`^[\s]*(?:put)?[\s]*(?P<datacenter>[\w]+)\.(?P<host>[^_]+)_(?P<domain>[\w]+).(?P<service_type>[a-z]+)(?P<service_id>[0-9]{3}).(?P<component>[\w]+).(?P<metric>.*)$`)}
 
 func (r *GraphiteMetricExp) FindStringSubmatchMap(s string) (map[string]string, error) {
 	captures := make(map[string]string)
@@ -30,6 +30,10 @@ func (r *GraphiteMetricExp) FindStringSubmatchMap(s string) (map[string]string, 
     if name == "metric_tags" {
       match[i] += " datacenter=" + captures["datacenter"]
       match[i] += " host=" + captures["host"]
+      match[i] += " service=" + captures["service_type"] + captures["service_id"]
+      match[i] += " service_type=" + captures["service_type"]
+      match[i] += " service_id=" + captures["service_id"]
+      match[i] += " component=" + captures["component"]
     }
 		captures[name] = strings.TrimSpace(match[i])
 
