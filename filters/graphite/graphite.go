@@ -13,7 +13,7 @@ type GraphiteMetricExp struct {
 	*regexp.Regexp
 }
 
-var metricExp = GraphiteMetricExp{regexp.MustCompile(`^[\s]*(?:put)?[\s]*(?P<datacenter>[\w]+)\.(?P<host>[^_]+)_(?P<domain>[\w]+).(?P<service_type>[A-Za-z\-]+)(?P<service_id>[0-9]{3})?(?P<service_id>[a-z\_\d]+)?.(?P<component>[\w]+).(?P<metric>.*)$`)}
+var metricExp = GraphiteMetricExp{regexp.MustCompile(`(?m^[\s]*(?:put)?[\s]*(?P<datacenter>[\w]+)\.(?P<host>[^_]+)_(?P<domain>[\w]+).(?P<service_type>[A-Za-z\-]+)(?P<service_id>[0-9]{3})?(?P<service_id>[a-z\_\d]+)?.(?P<component>[\w]+).(?P<metric>.*)$:re)`)}
 
 func (r *GraphiteMetricExp) FindStringSubmatchMap(s string) (map[string]string, error) {
 	captures := make(map[string]string)
